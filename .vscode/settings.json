@@ -1,0 +1,33 @@
+{
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit",
+            "source.fixAll": "explicit",
+        }
+    },
+    "isort.args": [
+        "--settings-path",
+        "pyproject.toml"
+    ],
+    "black-formatter.importStrategy": "fromEnvironment",
+    "black-formatter.path": [
+        "uv",
+        "run",
+        "pyink"
+    ],
+    "black-formatter.args": [
+        "--config=./pyproject.toml"
+    ],
+    "ruff.importStrategy": "fromEnvironment",
+    "ruff.enable": true,
+    "ruff.lint.args": [
+        "--config=./pyproject.toml"
+    ],
+    "ruff.organizeImports": false,
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 300,
+    "files.insertFinalNewline": true,
+    "editor.tabSize": 4,
+}
