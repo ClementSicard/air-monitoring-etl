@@ -27,8 +27,6 @@ dev-dependencies = [
   "pytest-xdist",
   "pytest-html",
   "pytest-mock",
-  "mkdocs-material",
-  "mkdocs-gen-files",
 ]
 
 [tool.hatch.build.targets.wheel]
