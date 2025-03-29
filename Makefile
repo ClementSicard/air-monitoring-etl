@@ -1,6 +1,8 @@
 UV_RUN ?= uv run --no-sync
 PYTEST ?= $(UV_RUN) pytest
 
+LOAD_ENV ?= export $$(cat .env | xargs)
+
 TEST_RESULTS_FOLDER := test-results
 
 #* Cleaning
@@ -108,3 +110,8 @@ logs:
 .PHONY: job
 job:
 	$(UV_RUN) python src/air_monitoring/main.py
+
+
+.PHONY: db
+db:
+	$(LOAD_ENV) && psql -h $${PG_HOST} -p $${PG_PORT} -U $${PG_USER} -d $${PG_DATABASE}
