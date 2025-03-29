@@ -6,6 +6,7 @@ dependencies = [
   "python-dotenv",
   "requests",
   "pytz",
+  "psycopg2-binary",
 ]
 description = "uv package for easy Python repo creation"
 dynamic = ["version"]
