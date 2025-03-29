@@ -109,7 +109,7 @@ logs:
 
 .PHONY: job
 job:
-	$(UV_RUN) python src/air_monitoring/main.py
+	$(LOAD_ENV) && $(UV_RUN) python src/air_monitoring/main.py
 
 
 .PHONY: db

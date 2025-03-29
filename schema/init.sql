@@ -5,5 +5,6 @@ CREATE TABLE IF NOT EXISTS measurement (
     temperature FLOAT,
     humidity FLOAT,
     measured_at TIMESTAMP,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT unique_measurement UNIQUE (reference, measured_at, temperature, humidity)
 );
