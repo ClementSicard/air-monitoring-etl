@@ -31,6 +31,7 @@ dev-dependencies = [
   "ipykernel",
   "absl-py",
   "pytest-cov",
+  "pytest-env",
   "pytest-xdist",
   "pytest-html",
   "pytest-mock",
@@ -143,3 +144,6 @@ branch = true
 [coverage.report]
 fail_under = "90"
 show_missing = true
+
+[tool.pytest.ini_options]
+env = ["ECCO2_DEV_ID = dummy-dev-id", "ECCO2_TOKEN = dummy-token"]
