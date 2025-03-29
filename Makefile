@@ -1,4 +1,4 @@
-UV_RUN ?= uv run --frozen
+UV_RUN ?= uv run --no-sync
 PYTEST ?= $(UV_RUN) pytest
 
 TEST_RESULTS_FOLDER := test-results
@@ -94,3 +94,17 @@ install:
 test:
 	$(PYTEST) --cov -n auto --dist loadgroup --junit-xml=$(TEST_RESULTS_FOLDER)/tests.xml --html=$(TEST_RESULTS_FOLDER)/tests.html --self-contained-html
 	$(UV_RUN) coverage-badge -o assets/coverage.svg -f
+
+
+#* Running
+.PHONY: run
+run:
+	docker compose --env-file .env up -d
+
+.PHONY: logs
+logs:
+	docker compose logs --follow
+
+.PHONY: job
+job:
+	$(UV_RUN) python src/air_monitoring/main.py
