@@ -147,4 +147,11 @@ fail_under = "90"
 show_missing = true
 
 [tool.pytest.ini_options]
-env = ["ECCO2_DEV_ID = dummy-dev-id", "ECCO2_TOKEN = dummy-token"]
+env = [
+  "ECCO2_DEV_ID = dummy-dev-id",
+  "ECCO2_TOKEN = dummy-token",
+  "PG_DATABASE = dummy-db",
+  "PG_USER = dummy-user",
+  "PG_HOST = dummy-host",
+  "PG_PORT = 12345",
+]
