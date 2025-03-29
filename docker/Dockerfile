@@ -9,6 +9,8 @@ ADD pyproject.toml uv.lock ./
 RUN pip install --upgrade uv \
     && UV_PROJECT_ENVIRONMENT=/usr/local uv sync --frozen --no-install-project --${DEV_FLAG}
 
-ADD . .
+COPY --chown=csicard . .
+
+USER csicard
 
 ENV PYTHONPATH="${PYTHONPATH}:src"
