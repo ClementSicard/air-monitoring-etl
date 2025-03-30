@@ -1,5 +1,6 @@
-UV_RUN ?= uv run --no-sync
+UV ?= ~/.local/bin/uv
 PYTEST ?= $(UV_RUN) pytest
+UV_RUN ?= $(UV) run --no-sync
 
 LOAD_ENV ?= export $$(cat .env | xargs)
 
