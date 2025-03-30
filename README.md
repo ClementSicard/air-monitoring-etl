@@ -9,7 +9,7 @@ Template for Python-based repositories
 ## CI status
 
 ![coverage](assets/coverage.svg)
-[![Lint](https://github.com/ClementSicard/python-template/actions/workflows/lint.yaml/badge.svg)](https://github.com/ClementSicard/python-template/actions/workflows/lint.yaml) [![Test](https://github.com/ClementSicard/python-template/actions/workflows/test.yaml/badge.svg)](https://github.com/ClementSicard/python-template/actions/workflows/test.yaml) 
+[![Lint](https://github.com/ClementSicard/air-monitoring-etl/actions/workflows/lint.yaml/badge.svg)](https://github.com/ClementSicard/air-monitoring-etl/actions/workflows/lint.yaml) [![Test](https://github.com/ClementSicard/air-monitoring-etl/actions/workflows/test.yaml/badge.svg)](https://github.com/ClementSicard/air-monitoring-etl/actions/workflows/test.yaml) 
 
 
 ## Setup up a cronjob
