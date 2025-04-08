@@ -31,7 +31,7 @@ class DBConnection:
         }
 
     @property
-    def _query(self) -> str:
+    def insert_query(self) -> str:
         """Returns the SQL query to insert a measurement."""
         return """
     INSERT INTO measurement (reference, temperature, humidity, measured_at)
@@ -45,7 +45,7 @@ class DBConnection:
             with psycopg2.connect(**self.params) as conn:  # type: ignore
                 with conn.cursor() as cur:
                     cur.execute(
-                        self._query,
+                        self.insert_query,
                         (
                             measurement.reference,
                             measurement.temperature,
@@ -58,3 +58,39 @@ class DBConnection:
                     )
         except psycopg2.Error as e:
             logger.error(f"Database error: {e}")
+
+    @property
+    def select_query(self) -> str:
+        """Returns the SQL query to select all measurements."""
+        return """
+    SELECT reference, temperature, humidity, measured_at
+    FROM measurement
+    ORDER BY measured_at DESC;
+    """
+
+    def get_measurements(self) -> list[Ecco2Measurement]:
+        """Fetches all measurements from the database."""
+        try:
+            with psycopg2.connect(**self.params) as conn:  # type: ignore
+                with conn.cursor() as cur:
+                    cur.execute(self.select_query)
+                    rows = cur.fetchall()
+                    measurements = [
+                        Ecco2Measurement(
+                            reference=row[0],
+                            temperature=row[1],
+                            humidity=row[2],
+                            timestamp=row[3],
+                        )
+                        for row in rows
+                    ]
+                    logger.success(
+                        f"Fetched {len(measurements)} records from the database."
+                    )
+                    return measurements
+        except psycopg2.Error as e:
+            logger.error(f"Database error: {e}")
+            return []
+        except Exception as e:
+            logger.error(f"Unexpected error: {e}")
+            return []

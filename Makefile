@@ -116,3 +116,7 @@ job:
 .PHONY: db
 db:
 	$(LOAD_ENV) && psql -h $${PG_HOST} -p $${PG_PORT} -U $${PG_USER} -d $${PG_DATABASE}
+
+.PHONY: dashboard
+dashboard:
+	$(UV_RUN) streamlit run src/air_monitoring/dashboard/main.py --server.port 8000
