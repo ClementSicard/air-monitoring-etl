@@ -1,4 +1,4 @@
-UV ?= ~/.local/bin/uv
+UV := $(shell command -v uv || echo ~/.local/bin/uv)
 PYTEST ?= $(UV_RUN) pytest
 UV_RUN ?= $(UV) run --no-sync
 
