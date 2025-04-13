@@ -9,6 +9,7 @@ dependencies = [
   "psycopg2-binary",
   "streamlit",
   "pandas",
+  "pyarrow",
 ]
 description = "uv package for easy Python repo creation"
 dynamic = ["version"]

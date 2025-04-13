@@ -1,16 +1,21 @@
-ARG DEV_FLAG="no-dev"
+FROM python:3.11-slim
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
-FROM --platform=linux/amd64 python:3.11-alpine
+ARG USER_NAME=csicard
+
+# Install make
+RUN apt-get update && \
+    apt-get install -y make && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
 
 USER root
-
+RUN useradd -ms /bin/bash ${USER_NAME}
 ADD pyproject.toml uv.lock ./
 
-RUN pip install --upgrade uv \
-    && UV_PROJECT_ENVIRONMENT=/usr/local uv sync --frozen --no-install-project --${DEV_FLAG}
+RUN UV_PROJECT_ENVIRONMENT=/usr/local uv sync --frozen --no-install-project --no-dev
 
-COPY --chown=csicard . .
+COPY --chown=${USER_NAME} . .
 
-USER csicard
+USER ${USER_NAME}
 
-ENV PYTHONPATH="${PYTHONPATH}:src"
+ENV PYTHONPATH="src"

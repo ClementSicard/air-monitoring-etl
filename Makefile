@@ -99,6 +99,11 @@ test:
 	$(UV_RUN) coverage-badge -o assets/coverage.svg -f
 
 
+#* Building
+.PHONY: build
+build:
+	docker build -t air_monitoring:latest -f docker/Dockerfile .
+
 #* Running
 .PHONY: run
 run:
