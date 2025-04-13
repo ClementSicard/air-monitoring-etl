@@ -21,6 +21,17 @@ services:
       timeout: 10s
       retries: 5
 
+  job:
+    image: air_monitoring:latest
+    depends_on:
+      postgres:
+        condition: service_healthy
+    command: [ "make", "job" ]
+    env_file:
+      - .env
+    networks:
+      - db
+
 networks:
   db:
     driver: bridge

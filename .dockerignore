@@ -1,1 +1,7 @@
 test-results
+.venv/
+assets/
+schema/
+.vscode/
+.github/
+.devcontainer/

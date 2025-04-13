@@ -12,7 +12,7 @@ USER root
 RUN useradd -ms /bin/bash ${USER_NAME}
 ADD pyproject.toml uv.lock ./
 
-RUN UV_PROJECT_ENVIRONMENT=/usr/local uv sync --frozen --no-install-project --no-dev
+RUN uv sync --frozen --no-install-project --no-dev
 
 COPY --chown=${USER_NAME} . .
 

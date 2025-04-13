@@ -113,9 +113,13 @@ run:
 logs:
 	docker compose logs --follow
 
+.PHONY: job-docker
+job-docker:
+	$(LOAD_ENV) && $(UV_RUN) python src/air_monitoring/main.py
+
 .PHONY: job
 job:
-	$(LOAD_ENV) && $(UV_RUN) python src/air_monitoring/main.py
+	docker compose run --rm job
 
 
 .PHONY: db
