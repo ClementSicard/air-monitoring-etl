@@ -113,13 +113,9 @@ run:
 logs:
 	docker compose logs --follow
 
-.PHONY: job-docker
-job-docker:
-	$(LOAD_ENV) && $(UV_RUN) python src/air_monitoring/main.py
-
 .PHONY: job
 job:
-	docker compose run --rm job
+	$(UV_RUN) python src/air_monitoring/main.py --env-file ${ENV_FILE}
 
 
 .PHONY: db
@@ -128,4 +124,4 @@ db:
 
 .PHONY: dashboard
 dashboard:
-	$(UV_RUN) streamlit run src/air_monitoring/dashboard/main.py --server.port 8000
+	$(UV_RUN) streamlit run src/air_monitoring/dashboard/main.py --server.port 8000 -- --env-file ${ENV_FILE}

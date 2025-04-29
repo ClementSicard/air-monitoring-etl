@@ -3,7 +3,7 @@
 from datetime import datetime
 import os
 
-from dotenv import load_dotenv
+from loguru import logger
 from lxml import etree
 import pytz
 import requests
@@ -34,9 +34,12 @@ class Ecco2:
 
     def __init__(self) -> None:
         """Class constructor."""
-        load_dotenv()
         self.dev_id = os.environ["ECCO2_DEV_ID"]
         self.token = os.environ["ECCO2_TOKEN"]
+
+        logger.info(
+            f"Initializing Ecco2 with dev_id {self.dev_id} and token {self.token}"
+        )
 
     @property
     def _params(self) -> dict:

@@ -10,6 +10,9 @@ dependencies = [
   "streamlit",
   "pandas",
   "pyarrow",
+  "click",
+  "plotly",
+  "nbformat>=5.10.4",
 ]
 description = "uv package for easy Python repo creation"
 dynamic = ["version"]

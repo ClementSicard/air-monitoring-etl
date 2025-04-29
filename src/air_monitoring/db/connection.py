@@ -1,8 +1,8 @@
 """Module to interact with the database."""
 
 import os
+from pathlib import Path
 
-from dotenv import load_dotenv
 from loguru import logger
 import psycopg2
 
@@ -12,9 +12,10 @@ from air_monitoring.data.measurement import Ecco2Measurement
 class DBConnection:
     """Class to handle the database connection and operations."""
 
-    def __init__(self) -> None:
+    def __init__(self, env_file_path: Path) -> None:
         """Constructor to initialize the database connection parameters."""
-        load_dotenv()
+        self.env_file_path = env_file_path
+
         self.db_name = os.environ["PG_DATABASE"]
         self.user = os.environ["PG_USER"]
         self.host = os.environ["PG_HOST"]
