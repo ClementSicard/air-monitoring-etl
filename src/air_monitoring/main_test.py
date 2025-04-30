@@ -3,6 +3,7 @@
 from datetime import datetime
 from unittest import mock
 
+from click.testing import CliRunner
 from loguru import logger
 
 from air_monitoring.data.measurement import Ecco2Measurement
@@ -26,11 +27,13 @@ example_measurement = Ecco2Measurement(
         f"Mocking writing to DB {measurement=}"
     ),
 )
+@mock.patch("air_monitoring.main.load_dotenv")
 def test_get_measurement(
-    insert_measurement_path, get_measurement_patch
+    load_dotenv_patch, insert_measurement_path, get_measurement_patch
 ) -> None:
     """Test that the main function does not raise an AssertionError."""
     from air_monitoring.main import main
 
-    main()
+    runner = CliRunner()
+    runner.invoke(main, ["--env-file", "dummy_file"])
     assert True
